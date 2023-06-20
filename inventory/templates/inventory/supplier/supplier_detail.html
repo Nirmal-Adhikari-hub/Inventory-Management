@@ -1,0 +1,11 @@
+
+{% extends 'views/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ supplier.name }}</h2>
+    <p><strong>Contact Person:</strong> {{ supplier.contact_person }}</p>
+    <p><strong>Email:</strong>  {{ supplier.email }}</p>
+    <p><strong>Phone Number:</strong> {{ supplier.phone }}</p>
+</div>
+{% endblock %}

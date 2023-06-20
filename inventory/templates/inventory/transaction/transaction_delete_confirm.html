@@ -1,0 +1,16 @@
+
+{% extends 'views/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Delete Transaction</h2>
+  <p>Are you sure you want to delete the Transaction "{{ transaction.product }}" with following details?</p>
+    <p><strong>Transaction Date:</strong> {{ transaction.transaction_date }}</p>
+    <p><strong>Quantity:</strong>  {{ transaction.quantity }}</p>
+    <p><strong>Transaction Type:</strong> {{ transaction.transaction_type }}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Delete</button>
+  </form>
+</div>
+{% endblock %}

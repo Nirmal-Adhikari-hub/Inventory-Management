@@ -1,0 +1,43 @@
+<!-- inventory/product_list.html -->
+{% extends 'views/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <a class="btn btn-primary mb-3" href="{% url 'category_create' %}">Add New Category</a>
+  {% if categories %}
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+            <th>S.N.</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ category.name }}</td>
+
+          <td>
+            <a class="btn btn-primary" href="{% url 'category_update' pk=category.pk %}">Update</a>
+            <form action="{% url 'category_delete' pk=category.pk %}" method="get" style="display: inline;">
+              {% csrf_token %}
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p>No categories available.</p>
+  {% endif %}
+</div>
+{% endblock %}
+
+
+
+

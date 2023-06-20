@@ -1,0 +1,45 @@
+<!-- inventory/product_list.html -->
+{% extends 'views/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <a class="btn btn-primary mb-3" href="{% url 'transaction_create' %}">Add New Transaction</a>
+  {% if transactions %}
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>S.N</th>
+          <th>Transaction Product</th>
+          <th>Transaction Date</th>
+          <th>Quantity</th>
+          <th>Transaction Type</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaction in transactions %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td><a href="{% url 'transaction_detail' pk=transaction.pk %}">{{ transaction.product.name }}</a></td>
+          <td>{{ transaction.transaction_date }}</td>
+          <td>{{ transaction.quantity }}</td>
+          <td>{{ transaction.transaction_type }}</td>
+          
+          <td>
+            <a class="btn btn-primary" href="{% url 'transaction_update' pk=transaction.pk %}">Update</a>
+            <form action="{% url 'transaction_delete' pk=transaction.pk %}" method="get" style="display: inline;">
+              {% csrf_token %}
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p>No Transactions available.</p>
+  {% endif %}
+</div>
+{% endblock %}

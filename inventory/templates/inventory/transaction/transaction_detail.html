@@ -1,0 +1,11 @@
+
+{% extends 'views/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Transaction of '{{ transaction.product.name }}'</h2>
+    <p><strong>Transaction Date:</strong> {{ transaction.transaction_date }}</p>
+    <p><strong>Quantity:</strong>  {{ transaction.quantity }}</p>
+    <p><strong>Transaction Type:</strong> {{ transaction.transaction_type }}</p>
+</div>
+{% endblock %}
